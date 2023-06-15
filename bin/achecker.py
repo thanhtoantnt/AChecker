@@ -34,7 +34,6 @@ def extract_bin_str(s):
     """
     Extracts binary representation of smart contract from solc output.
     """
-    # print(s)
     binary_regex = (
         r"\r?\n======= (.*?) =======\r?\nBinary of the runtime part:\r?\n(.*?)\r?\n"
     )
@@ -97,23 +96,7 @@ def get_evm(contract):
     FNULL = open(os.devnull, "w")
     solc_p = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=FNULL)
     out = solc_p.communicate()[0]
-    # print(out)
-    # TODO: get the contract names
-    # contracts = get_contract_names(path)
-    # print(contracts)
-    # contract_contents = []
-    # for contract in contracts:
-    #     contract_path = os.path.join(path_dir, contract + ".bin-runtime")
-    #     with open(contract_path, 'r') as file:
-    #         contents = file.read()
-    #         # print(contents)
-    #         contract_contents.append(contents)
-
-    # print(contract_contents)
-    # exit()
     return extract_bin_str(out)
-    # return contract_contents
-
 
 def analysis(
     p,
